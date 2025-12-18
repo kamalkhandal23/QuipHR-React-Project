@@ -1,181 +1,149 @@
-📘 React Mini Application – Role Based Dashboard
-📌 Overview
+# React Mini Dashboard Application
 
-This project is a React-based mini dashboard application built as part of a technical assessment.
-The application focuses on role-based sidebar rendering, protected routing, theme management, and state persistence, all driven by a single JSON configuration.
+This project is a small React dashboard application built as part of a technical assessment.  
+The focus of the assignment is on **role-based sidebar rendering**, **protected routes**, and **theme persistence**, rather than heavy UI or backend integration.
 
-The goal was to create a clean, scalable, and maintainable frontend architecture, similar to real-world admin panels.
+The application is completely **configuration-driven**, similar to how real-world admin panels work.
 
-🚀 Features
-✅ Role-Based Sidebar (JSON Driven)
+---
 
-Sidebar menus are rendered dynamically from a JSON configuration.
+## Features
 
-Only menu items with enabled: true are visible.
+### 1. Role-Based Sidebar
+- Sidebar menus are rendered dynamically from a JSON configuration.
+- Only menu items with `enabled: true` are shown.
+- Supports parent → child menu structure.
+- No routes or sidebar items are hardcoded.
 
-Supports parent → child menu structure.
+---
 
-No routes or menus are hardcoded.
-
-✅ Protected Routing & Authorization
-
-Implemented using react-router-dom.
-
-Only routes enabled in JSON are accessible.
-
-Direct access to disabled or unknown routes redirects to a 403 Forbidden page.
-
-A reusable ProtectedRoute component handles authorization logic.
-
-✅ Theme Management
-
-4 predefined themes:
-
-Blue
-
-Green
-
-Dark
-
-Purple
-
-Theme affects:
-
-Sidebar background
-
-Topbar background
-
-Accent colors
-
-Selected theme is persisted using localStorage.
-
-Theme selection is available via a profile dropdown.
-
-✅ Responsive Layout
-
-Desktop: Sidebar always visible.
-
-Mobile:
-
-Sidebar collapses by default.
-
-Hamburger menu toggles sidebar visibility.
-
-Fully responsive using Tailwind CSS utilities.
-
-✅ Pages
-
-Each enabled route renders a simple welcome page.
+### 2. Protected Routes
+- Routing is handled using `react-router-dom`.
+- Every route is wrapped inside a reusable `ProtectedRoute` component.
+- Direct URL access to disabled or unknown routes is blocked.
+- Unauthorized access redirects the user to a **403 Forbidden** page.
 
 Example:
+- `/crm/leads` → accessible
+- `/crm/reports` → blocked (403)
 
+---
+
+### 3. Theme Management
+- Multiple predefined themes (Blue, Green, Dark, Purple).
+- Theme affects:
+  - Sidebar background
+  - Topbar background
+  - Accent colors
+- Selected theme is stored in `localStorage` and restored on page reload.
+- Theme can be changed from the profile dropdown.
+
+---
+
+### 4. Responsive Layout
+- Desktop:
+  - Sidebar is always visible.
+- Mobile:
+  - Sidebar is hidden by default.
+  - Hamburger menu toggles the sidebar.
+- Layout adapts using Tailwind CSS responsive utilities.
+
+---
+
+### 5. Pages
+- Each enabled route renders a simple welcome page.
+- The page content reflects the current route.
+
+Example:
 Welcome to /crm/leads
 
-🧱 Tech Stack
 
-React (Vite)
+---
 
-react-router-dom
+## Tech Stack
+- React (Vite)
+- react-router-dom
+- Tailwind CSS
+- Context API
+- JavaScript (ES6)
 
-Tailwind CSS
+---
 
-Context API
+## Project Structure
 
-JavaScript (ES6+)
-
-📁 Project Structure
 src/
 ├── config/
-│   ├── permissions.config.js
-│   └── themes.config.js
+│ ├── permissions.config.js
+│ └── themes.config.js
 │
 ├── context/
-│   └── ThemeContext.jsx
+│ └── ThemeContext.jsx
 │
 ├── layout/
-│   ├── AppLayout.jsx
-│   ├── Sidebar.jsx
-│   ├── Topbar.jsx
-│   └── ProfileDropdown.jsx
+│ ├── AppLayout.jsx
+│ ├── Sidebar.jsx
+│ ├── Topbar.jsx
+│ └── ProfileDropdown.jsx
 │
 ├── pages/
-│   ├── WelcomePage.jsx
-│   └── Forbidden.jsx
+│ ├── WelcomePage.jsx
+│ └── Forbidden.jsx
 │
 ├── routes/
-│   ├── AppRoutes.jsx
-│   └── ProtectedRoute.jsx
+│ ├── AppRoutes.jsx
+│ └── ProtectedRoute.jsx
 │
 ├── utils/
-│   └── permissionUtils.js
+│ └── permissionUtils.js
 │
 ├── App.jsx
 ├── main.jsx
 └── index.css
 
-🔐 Authorization Logic
 
-All permissions are derived from permissions.config.js.
+---
 
-A utility function checks if a route is enabled.
+## Authorization Logic
+- All permissions come from `permissions.config.js`.
+- A utility function checks whether a route is enabled.
+- `ProtectedRoute` uses this logic to allow or block access.
+- This ensures routes are protected even when accessed directly via the URL.
 
-ProtectedRoute validates access before rendering a page.
+---
 
-Unauthorized access redirects to a 403 Forbidden page.
+## Theme Persistence
+- Theme state is managed using React Context.
+- The selected theme is saved in `localStorage`.
+- On page refresh, the previously selected theme is restored automatically.
 
-🎨 Theme Persistence Logic
+---
 
-Theme state is managed using React Context.
+## Deployment Notes
+- The application is deployed on Vercel.
+- A rewrite configuration is used to support client-side routing.
+- This ensures direct access to routes works correctly in production.
 
-Selected theme is stored in localStorage.
+---
 
-On app reload, the theme is restored automatically.
+## Testing Summary
+- Sidebar renders only enabled menu items
+- Disabled routes show 403 Forbidden
+- Theme changes reflect across the UI
+- Theme persists after refresh
+- Sidebar toggle works on mobile
 
-📱 Responsiveness
+---
 
-Sidebar uses CSS transforms to slide in/out on mobile.
-
-Layout adapts seamlessly across desktop, tablet, and mobile screens.
-
-🧪 Testing Checklist
-
-Sidebar renders only enabled menus ✔
-
-Disabled routes redirect to 403 ✔
-
-Theme changes reflect across UI ✔
-
-Theme persists on page reload ✔
-
-Mobile sidebar toggle works ✔
-
-🌍 Deployment
-
-Application can be deployed on Vercel or Render.
-
-Built using Vite for fast builds and modern development experience.
-
-🧠 Key Design Decisions
-
-Single source of truth (JSON-driven UI & routing).
-
-Separation of concerns (layout, routes, logic, config).
-
-Minimal but meaningful UI polish to enhance UX without overengineering.
-
-📎 Conclusion
-
+## Conclusion
 This project demonstrates:
+- Clean React component structure
+- Config-driven UI and routing
+- Proper route protection
+- State persistence
+- Responsive layout handling
 
-Strong React fundamentals
+---
 
-Clean component architecture
-
-Real-world routing & authorization patterns
-
-UI/UX awareness with responsive design
-
-👤 Author
-
-Kamal Khandal
+**Author:**  
+Kamal Khandal  
 React Developer Intern Candidate
