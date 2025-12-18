@@ -122,7 +122,7 @@ src/
 - The application is deployed on Vercel.
 - A rewrite configuration is used to support client-side routing.
 - This ensures direct access to routes works correctly in production.
-
+- Live Link: https://quip-hr-react-project.vercel.app/
 ---
 
 ## Testing Summary
