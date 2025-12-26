@@ -9,7 +9,6 @@ export default function AppLayout() {
   return (
     <div className="relative flex min-h-screen bg-gray-100">
       
-      {/* Overlay – ONLY for mobile & ONLY over content */}
       {sidebarOpen && (
         <div
           onClick={() => setSidebarOpen(false)}
@@ -17,10 +16,8 @@ export default function AppLayout() {
         />
       )}
 
-      {/* Sidebar */}
       <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
 
-      {/* Main Content */}
       <div className="flex flex-1 flex-col relative z-10">
         <Topbar onMenuClick={() => setSidebarOpen(true)} />
 
