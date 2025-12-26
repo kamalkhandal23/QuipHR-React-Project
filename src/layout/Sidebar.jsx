@@ -23,8 +23,6 @@ export default function Sidebar({ isOpen, setIsOpen }) {
   const { themeConfig } = useTheme();
   const location = useLocation();
   const [openMenu, setOpenMenu] = useState(null);
-
-  // Auto-expand active parent
   useEffect(() => {
     const active = appConfig.permissions.find((menu) =>
       menu.children?.some((c) => location.pathname.startsWith(c.path))
@@ -53,8 +51,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
 
             return (
               <div key={menu.id} className="mb-2">
-                
-                {/* Parent */}
+
                 <button
                   onClick={() =>
                     setOpenMenu(expanded ? null : menu.id)
@@ -73,7 +70,6 @@ export default function Sidebar({ isOpen, setIsOpen }) {
                   />
                 </button>
 
-                {/* Children */}
                 {expanded && (
                   <div className="ml-6 mt-2 space-y-1">
                     {menu.children
