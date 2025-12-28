@@ -145,7 +145,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
             })}
         </nav>
 
-        <div className="hidden md:flex justify-center p-3 border-t border-white/10">
+        <div className="hidden md:flex items-center justify-start p-3 border-t border-white/10">
           <button
             onClick={() => setExpanded(!expanded)}
             className="p-2 rounded-md hover:bg-white/10"
