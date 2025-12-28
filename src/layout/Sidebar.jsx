@@ -23,9 +23,6 @@ const ICONS = {
 export default function Sidebar({ isOpen, setIsOpen }) {
   const { themeConfig } = useTheme();
   const location = useLocation();
-<<<<<<< HEAD
-  const [openMenu, setOpenMenu] = useState(null);
-=======
 
   const isDesktop = window.matchMedia("(min-width: 768px)").matches;
 
@@ -36,7 +33,6 @@ export default function Sidebar({ isOpen, setIsOpen }) {
     if (!isDesktop) setExpanded(true);
   }, [isDesktop]);
 
->>>>>>> c6264f5 (collapsible sidebar)
   useEffect(() => {
     const active = appConfig.permissions.find((menu) =>
       menu.children?.some((c) => location.pathname.startsWith(c.path))
@@ -68,20 +64,6 @@ export default function Sidebar({ isOpen, setIsOpen }) {
               const Icon = ICONS[menu.id] || Circle;
               const isOpenMenu = openParent === menu.id;
 
-<<<<<<< HEAD
-            return (
-              <div key={menu.id} className="mb-2">
-
-                <button
-                  onClick={() =>
-                    setOpenMenu(expanded ? null : menu.id)
-                  }
-                  className="flex w-full items-center justify-between rounded-md px-3 py-2 text-sm font-medium hover:bg-white/10 transition"
-                >
-                  <div className="flex items-center gap-2">
-                    <MenuIcon size={18} />
-                    <span>{menu.label}</span>
-=======
               return (
                 <div key={menu.id} className="relative group">
                   <div className="flex items-center justify-between px-3 py-2 rounded-md hover:bg-white/10">
@@ -107,27 +89,8 @@ export default function Sidebar({ isOpen, setIsOpen }) {
                         />
                       </button>
                     )}
->>>>>>> c6264f5 (collapsible sidebar)
                   </div>
 
-<<<<<<< HEAD
-                {expanded && (
-                  <div className="ml-6 mt-2 space-y-1">
-                    {menu.children
-                      .filter((child) => child.enabled)
-                      .map((child) => {
-                        const ChildIcon = ICONS[child.id];
-
-                        return (
-                          <NavLink
-                            key={child.id}
-                            to={child.path}
-                            onClick={() => setIsOpen(false)}
-                            className={({ isActive }) =>
-                              `flex items-center gap-2 rounded-md px-3 py-2 text-sm transition
-                              ${
-                                isActive
-=======
                   {expanded && isOpenMenu && (
                     <div className="ml-8 mt-1 space-y-1">
                       {menu.children
@@ -142,7 +105,6 @@ export default function Sidebar({ isOpen, setIsOpen }) {
                               className={({ isActive }) =>
                                 `flex items-center gap-2 rounded-md px-3 py-1 text-sm transition
                                 ${isActive
->>>>>>> c6264f5 (collapsible sidebar)
                                   ? "bg-white/20 font-semibold"
                                   : "hover:bg-white/10"
                                 }`
