@@ -8,7 +8,10 @@ export default function AppLayout() {
 
   return (
     <div className="relative flex min-h-screen bg-gray-100">
+<<<<<<< HEAD
       
+=======
+>>>>>>> c6264f5 (collapsible sidebar)
       {sidebarOpen && (
         <div
           onClick={() => setSidebarOpen(false)}
